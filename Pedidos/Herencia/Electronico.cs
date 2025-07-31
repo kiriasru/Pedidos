@@ -10,5 +10,5 @@ public class Electronico : Producto
         base.MostrarInformacion();
         Console.WriteLine($"Garantia: {GarantiaMeses} meses");
         Console.WriteLine($"Voltaje: {Voltaje}");
-    }
-}
+    } // Fin del override
+} // Fin de class
