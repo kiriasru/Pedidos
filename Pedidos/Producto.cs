@@ -3,11 +3,13 @@ namespace Pedidos
 {
     public class Producto
     {
+        // Atributos
         public int Id { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-
+        
+        // Metodos
         public virtual void MostrarInformacion()
         {
             Console.WriteLine();
@@ -16,7 +18,7 @@ namespace Pedidos
             Console.WriteLine($"Nombre: {Nombre}");
             Console.WriteLine($"Precio: {Precio:C}");
             Console.WriteLine($"Cantidad disponible: {Stock}");
-        }
+        } // Fin de MostrarInformacion
 
         // Si el constructor no lleva parámetros, C# automáticamente lo crea por detrás
 
@@ -31,6 +33,7 @@ namespace Pedidos
                 Console.WriteLine($"No hay suficiente stock de {Nombre}");
                 Console.WriteLine();
             }
-        }
-    }
-}
+        } // Fin de DisminuirStock
+        
+    } // Fin de class
+} // Fin de namespace
