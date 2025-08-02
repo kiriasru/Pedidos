@@ -1,7 +1,7 @@
 ﻿
 namespace Pedidos
 {
-    public class Producto
+    public abstract class Producto
     {
         // Atributos
         public int Id { get; set; }
@@ -10,15 +10,18 @@ namespace Pedidos
         public int Stock { get; set; }
         
         // Metodos
-        public virtual void MostrarInformacion()
-        {
+        public abstract void MostrarInformacion();
+        /*
+         {
             Console.WriteLine();
             Console.WriteLine("***** DATOS DEL PRODUCTO *****");
             Console.WriteLine($"ID: {Id}");
             Console.WriteLine($"Nombre: {Nombre}");
             Console.WriteLine($"Precio: {Precio:C}");
             Console.WriteLine($"Cantidad disponible: {Stock}");
-        } // Fin de MostrarInformacion
+        }
+         */
+        // Fin de MostrarInformacion
 
         // Si el constructor no lleva parámetros, C# automáticamente lo crea por detrás
 
@@ -36,4 +39,5 @@ namespace Pedidos
         } // Fin de DisminuirStock
         
     } // Fin de class
+    
 } // Fin de namespace
