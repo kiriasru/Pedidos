@@ -1,8 +1,11 @@
 ﻿
+using Pedidos.Herencia;
+
 namespace Pedidos
 {
     public class Pedido
     {
+        // Atributos
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public List<ItemPedido> Items { get; set; }
@@ -14,7 +17,9 @@ namespace Pedidos
             Fecha = DateTime.Now;
             Items = new List<ItemPedido>();
         }
-
+        
+        // Metodos
+        // Estamos asignando el valor del objeto abstracto  Producto como param
         public void AgregarItem(Producto Producto, int Cantidad)
         {
             if (Producto.Stock >= Cantidad)
@@ -28,8 +33,8 @@ namespace Pedidos
                 Console.WriteLine($"No hay suficiente stock de {Producto.Nombre}");
                 Console.WriteLine();
             }
-        }
-
+        } // Fin de Agregar Item
+        
         public void MostrarDetalles()
         {
             Console.WriteLine("-----------------------------------------");
@@ -43,7 +48,7 @@ namespace Pedidos
             Console.WriteLine($"Total: {Total:C}");
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine();
-        }
+        } // Fin de MostrarDetalles
 
-    }
+    } // Fin de class
 }
