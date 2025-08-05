@@ -3,6 +3,8 @@
   <component name="UserContentModel">
     <attachedFolders />
     <explicitIncludes />
-    <explicitExcludes />
+    <explicitExcludes>
+      <Path>Pedidos/wef.cs</Path>
+    </explicitExcludes>
   </component>
 </project>
