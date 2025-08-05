@@ -1,7 +1,7 @@
 ﻿
 namespace Pedidos
 {
-    public abstract class Producto
+    public abstract class Producto : IInformacionDetallada
     {
         // Atributos
         public int Id { get; set; }
@@ -37,6 +37,14 @@ namespace Pedidos
                 Console.WriteLine();
             }
         } // Fin de DisminuirStock
+        
+        public string ObtenerInformacionDetallada()
+        {
+            return $"ID: {Id}\n" +
+                   $"Nombre: {Nombre}\n" +
+                   $"Precio: {Precio:C}\n" +
+                   $"Cantidad disponible: {Stock}";
+        } 
         
     } // Fin de class
     
