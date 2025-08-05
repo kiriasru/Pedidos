@@ -3,7 +3,7 @@ using Pedidos.Herencia;
 
 namespace Pedidos
 {
-    public class Pedido
+    public class Pedido : IInformacionDetallada
     {
         // Atributos
         public int Id { get; set; }
@@ -49,6 +49,12 @@ namespace Pedidos
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine();
         } // Fin de MostrarDetalles
+        
+        public string ObtenerInformacionDetallada()
+        {
+            return $"Detalles del Pedido #{Id}\n" +
+                   $"Fecha: {Fecha:dd/MM/yyyy HH:mm:ss}\n";
+        }
 
     } // Fin de class
 }
