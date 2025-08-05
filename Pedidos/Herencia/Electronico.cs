@@ -1,6 +1,6 @@
 ﻿namespace Pedidos.Herencia;
 
-public class Electronico : Producto
+public class Electronico : Producto, IInformacionDetallada
 {
     // Atributos
     public int GarantiaMeses { get; set; }
@@ -11,10 +11,7 @@ public class Electronico : Producto
     {
         Console.WriteLine();
         Console.WriteLine("***** DATOS DEL PRODUCTO *****");
-        Console.WriteLine($"ID: {Id}");
-        Console.WriteLine($"Nombre: {Nombre}");
-        Console.WriteLine($"Precio: {Precio:C}");
-        Console.WriteLine($"Cantidad disponible: {Stock}");
+        Console.WriteLine(ObtenerInformacionDetallada());
         Console.WriteLine($"Garantia: {GarantiaMeses} meses");
         Console.WriteLine($"Voltaje: {Voltaje}");
     } // Fin del override
