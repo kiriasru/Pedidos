@@ -1,24 +1,42 @@
-﻿using System.Threading.Channels;
-
-namespace Pedidos.Herencia;
-
-public class Libro : Producto
+﻿namespace Pedidos.Herencia
 {
-    // Atributos
-    public string ISBN { get; set; }
-    public string Autor { get; set; }
-    public int NumeroPaginas { get; set; }
-    
-    // Metodos
-
-    public override void MostrarInformacion()
+    public class Libro : Producto, IInformacionDetallada
     {
-        Console.WriteLine();
-        Console.WriteLine("***** DATOS DEL PRODUCTO *****");
-        Console.WriteLine(ObtenerInformacionDetallada());
-        Console.WriteLine($"ISBN: {ISBN}");
-        Console.WriteLine($"Autor: {Autor}");
-        Console.WriteLine($"Número de Páginas: {NumeroPaginas}");
-    } // Fin de MostrarInformacion
-    
-} // Fin de class
+        public string ISBN { get; set; }
+        public string Autor { get; set; }
+        public int NumeroPaginas { get; set; }
+
+        public override void MostrarInformacion()
+        {
+            Console.WriteLine();
+            Console.WriteLine("***** DATOS DEL PRODUCTO *****");
+            Console.WriteLine(ObtenerInformacionDetallada());
+            Console.WriteLine($"ISBN: {ISBN}");
+            Console.WriteLine($"Autor: {Autor}");
+            Console.WriteLine($"Número de Páginas: {NumeroPaginas}");
+        }
+
+        public override void MostrarInformacion(string Direccion)
+        {
+            Console.WriteLine();
+            Console.WriteLine("***** DATOS DEL PRODUCTO *****");
+            Console.WriteLine(ObtenerInformacionDetallada());
+            Console.WriteLine($"Dirección: {Direccion}");
+            Console.WriteLine($"ISBN: {ISBN}");
+            Console.WriteLine($"Autor: {Autor}");
+            Console.WriteLine($"Número de Páginas: {NumeroPaginas}");
+        }
+
+        public override void MostrarInformacion(string Direccion, string Dni)
+        {
+            Console.WriteLine();
+            Console.WriteLine("***** DATOS DEL PRODUCTO *****");
+            Console.WriteLine(ObtenerInformacionDetallada());
+            Console.WriteLine($"Dirección: {Direccion}");
+            Console.WriteLine($"Dni: {Dni}");
+            Console.WriteLine($"ISBN: {ISBN}");
+            Console.WriteLine($"Autor: {Autor}");
+            Console.WriteLine($"Número de Páginas: {NumeroPaginas}");
+        }
+    }
+}

@@ -1,27 +1,27 @@
-﻿
-namespace Pedidos
+﻿namespace Pedidos
 {
     public abstract class Producto : IInformacionDetallada
     {
-        // Atributos
         public int Id { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-        
-        // Metodos
-        public abstract void MostrarInformacion();
-        /*
-         {
-            Console.WriteLine();
-            Console.WriteLine("***** DATOS DEL PRODUCTO *****");
-            Console.WriteLine($"ID: {Id}");
-            Console.WriteLine($"Nombre: {Nombre}");
-            Console.WriteLine($"Precio: {Precio:C}");
-            Console.WriteLine($"Cantidad disponible: {Stock}");
+
+        public Producto() { }
+
+        public Producto(int Id, string Nombre, decimal Precio)
+        {
+            this.Id = Id;
+            this.Nombre = Nombre;
+            this.Precio = Precio;
+            Stock = 0;
         }
-         */
-        // Fin de MostrarInformacion
+
+        public abstract void MostrarInformacion();
+
+        public abstract void MostrarInformacion(string Direccion);
+
+        public abstract void MostrarInformacion(string Direccion, string Dni);
 
         // Si el constructor no lleva parámetros, C# automáticamente lo crea por detrás
 
@@ -36,16 +36,15 @@ namespace Pedidos
                 Console.WriteLine($"No hay suficiente stock de {Nombre}");
                 Console.WriteLine();
             }
-        } // Fin de DisminuirStock
-        
+        }
+
         public string ObtenerInformacionDetallada()
         {
             return $"ID: {Id}\n" +
                    $"Nombre: {Nombre}\n" +
                    $"Precio: {Precio:C}\n" +
                    $"Cantidad disponible: {Stock}";
-        } 
-        
-    } // Fin de class
-    
-} // Fin de namespace
+        }
+
+    }
+}

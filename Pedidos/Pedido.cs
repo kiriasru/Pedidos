@@ -5,11 +5,11 @@ namespace Pedidos
 {
     public class Pedido : IInformacionDetallada
     {
-        // Atributos
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public List<ItemPedido> Items { get; set; }
         public decimal Total => Items.Sum(item => item.Subtotal);
+        private bool TieneStock { get; set; }
 
         public Pedido(int IdPedido)
         {
@@ -17,9 +17,8 @@ namespace Pedidos
             Fecha = DateTime.Now;
             Items = new List<ItemPedido>();
         }
-        
-        // Metodos
-        // Estamos asignando el valor del objeto abstracto  Producto como param
+
+        // En este caso estamos asignando el objeto abstracto Producto como parametro
         public void AgregarItem(Producto Producto, int Cantidad)
         {
             if (Producto.Stock >= Cantidad)
@@ -28,33 +27,36 @@ namespace Pedidos
                 Producto.DisminuirStock(Cantidad);
                 Console.WriteLine($"El Producto {Producto.Nombre} con cantidad {Cantidad}, se ha agregado al Pedido");
                 Console.WriteLine();
+                TieneStock = true;
             } else
             {
                 Console.WriteLine($"No hay suficiente stock de {Producto.Nombre}");
                 Console.WriteLine();
+                TieneStock = false;
             }
-        } // Fin de Agregar Item
-        
+        }
+
         public void MostrarDetalles()
         {
-            Console.WriteLine("-----------------------------------------");
-            Console.WriteLine($"Detalles del Pedido #{Id}");
-            Console.WriteLine($"Fecha: {Fecha:dd/MM/yyyy HH:mm:ss}");
-
-            foreach (var item in Items)
+            if(TieneStock)
             {
-                Console.WriteLine($"Producto: {item.Producto.Nombre}, Cantidad: {item.Cantidad}, Subtotal: {item.Subtotal:C}");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine(ObtenerInformacionDetallada());
+
+                foreach (var item in Items)
+                {
+                    Console.WriteLine($"Producto: {item.Producto.Nombre}, Cantidad: {item.Cantidad}, Subtotal: {item.Subtotal:C}");
+                }
+                Console.WriteLine($"Total: {Total:C}");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine();
             }
-            Console.WriteLine($"Total: {Total:C}");
-            Console.WriteLine("-----------------------------------------");
-            Console.WriteLine();
-        } // Fin de MostrarDetalles
-        
+        }
+
         public string ObtenerInformacionDetallada()
         {
             return $"Detalles del Pedido #{Id}\n" +
-                   $"Fecha: {Fecha:dd/MM/yyyy HH:mm:ss}\n";
+                   $"Fecha: {Fecha:dd/MM/yyyy HH:mm:ss}";
         }
-
-    } // Fin de class
+    }
 }
