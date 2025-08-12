@@ -16,24 +16,27 @@ namespace Pedidos
             Id = IdPedido;
             Fecha = DateTime.Now;
             Items = new List<ItemPedido>();
+            TieneStock = false;
         }
 
         // En este caso estamos asignando el objeto abstracto Producto como parametro
         public void AgregarItem(Producto Producto, int Cantidad)
         {
-            if (Producto.Stock >= Cantidad)
+            if (Producto == null)
             {
-                Items.Add(new ItemPedido(Producto, Cantidad));
-                Producto.DisminuirStock(Cantidad);
-                Console.WriteLine($"El Producto {Producto.Nombre} con cantidad {Cantidad}, se ha agregado al Pedido");
-                Console.WriteLine();
-                TieneStock = true;
-            } else
-            {
-                Console.WriteLine($"No hay suficiente stock de {Producto.Nombre}");
-                Console.WriteLine();
-                TieneStock = false;
+                throw new ArgumentNullException("El producto no puede ser nulo.");
             }
+
+            if (Producto.Stock < Cantidad)
+            {
+                throw new InvalidOperationException($"No hay suficiente stock de {Producto.Nombre}");
+            }
+            
+            Items.Add(new ItemPedido(Producto, Cantidad));
+            Producto.DisminuirStock(Cantidad);
+            Console.WriteLine($"El Producto {Producto.Nombre} con cantidad {Cantidad}, se ha agregado al Pedido");
+            Console.WriteLine();
+            TieneStock = true;
         }
 
         public void MostrarDetalles()
